@@ -20,8 +20,8 @@ class TodoList {
 
   factory TodoList.fromMap(Map<String, dynamic> map) {
     return TodoList(
-      id: map['id'],
-      tache: map['tache'],
+      id: map['id'] as int?,
+      tache: map['tache'] as String,
     );
   }
 }
