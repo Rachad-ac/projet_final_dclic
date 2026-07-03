@@ -38,10 +38,11 @@ class DatabaseManager {
         ''');
         
         // 3. Création d'un utilisateur par défaut au premier démarrage
-        batch.insert('users', {
-          'email': 'admin@gmail.com',
-          'password': 'password123' // En production, pensez à hacher le mot de passe
-        });
+        batch.insert(
+          'users', 
+          User.admin().toMap(),
+          conflictAlgorithm: ConflictAlgorithm.ignore
+        );
         
         await batch.commit();
       },
