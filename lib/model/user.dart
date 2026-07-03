@@ -3,18 +3,18 @@ class User {
   final String email;
   final String password; 
 
-  // constructeur pour recuperer les utilisateurs
+  // constructeur par défaut pour creer un utilisateur
   User({
     this.id,
-    this.email = 'admin@gmail.com',
-    this.password = 'password123',
+    required this.email ,
+    required this.password,
   });
 
-  // constructeur pour creer un utilisateur en base avec id de type AUTO INCREMENT
-  User.sansId({
-    required this.email,
-    required this.password,
-  }) : id = null;
+  // constructeur pour creer un utilisateur par defaut en base 
+  User.admin() 
+    : id = 1,
+      email = 'admin@gmail.com',
+      password = 'password1234';
 
   // convertir la classe User en un Objet map de type cle : valeur
   Map<String, dynamic> toMap() {
@@ -25,12 +25,12 @@ class User {
     };
   }
 
-  // conertir un map en une instence de User
+  // Convertir le Map de la base de données en User
   factory User.fromMap(Map<String, dynamic> map) {
     return User(
-      id: map['id'],
-      email: map['email'],
-      password: map['password'],
+      id: map['id'] as int?,
+      email: map['email'] as String,
+      password: map['password'] as String,
     );
   }
 }
