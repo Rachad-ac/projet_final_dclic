@@ -1,3 +1,4 @@
+import 'package:app_to_do_list/views/login_inteface.dart';
 import 'package:flutter/material.dart';
 import '../services/database_manager.dart'; 
 import '../model/todo_list.dart';
@@ -126,10 +127,23 @@ class _TodoListInterfaceState extends State<TodoListInterface> {
     return Scaffold(
       backgroundColor: Colors.grey[100],
       appBar: AppBar(
-        title: const Text('My Todo List', style: TextStyle(color: Colors.white)),
+        title: const Text('Todo List Home', style: TextStyle(color: Colors.white)),
         backgroundColor: Colors.indigo,
         centerTitle: true,
         elevation: 0,
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.logout, color: Colors.white),
+            tooltip: 'Se déconnecter',
+            onPressed: () {
+              // Redirection vers l'écran de connexion
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => const LoginInterface()),
+              );
+            },
+          ),
+        ],
       ),
       body: Column(
         children: [
@@ -177,11 +191,21 @@ class _TodoListInterfaceState extends State<TodoListInterface> {
                         itemCount: _taches.length,
                         itemBuilder: (context, index) {
                           final item = _taches[index];
-                          return Card(
+                          // Remplacement du Card par un Container avec décoration d'ombre basse
+                          return Container(
+                            alignment: Alignment.center,
+                            height: 70,
                             margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
-                            color: Colors.white,
-                            shape: RoundedRectangleBorder(
+                            decoration: BoxDecoration(
+                              color: Colors.white,
                               borderRadius: BorderRadius.circular(8),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: const Color.fromARGB(255, 141, 128, 252).withAlpha(200), // Opacité légère (~15%)
+                                  blurRadius: 4,                      // Floutage doux de la bordure
+                                  offset: const Offset(0, 4),         // Décalage vertical vers le bas uniquement
+                                ),
+                              ],
                             ),
                             child: ListTile(
                               title: Text(item.tache),
