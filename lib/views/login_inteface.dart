@@ -72,13 +72,13 @@ class _LoginScreenState extends State<LoginInterface> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               const SizedBox(height: 20),
-              // Icône du bloc-notes avec crayon au centre
-              Container(
-                height: 100,
-                width: 100,
-                child: Image.asset(
-                  'assets/images/logo.jpg', // Assurez-vous que le chemin est correct
+              ClipRRect(
+                borderRadius: BorderRadiusGeometry.all(Radius.circular(30)),
+                child: Image(
                   fit: BoxFit.cover,
+                  width: 140,
+                  height: 140,
+                  image: AssetImage('assets/images/logo.png'),
                 ),
               ),
               const SizedBox(height: 24),
