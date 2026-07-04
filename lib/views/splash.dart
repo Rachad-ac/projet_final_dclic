@@ -40,12 +40,12 @@ class _SplashState extends State<Splash> {
       backgroundColor: Colors.white,
       body:Center(
         child: ClipRRect(
-          borderRadius: BorderRadius.circular(30), // La moitié de la largeur/hauteur
+          borderRadius: BorderRadius.circular(30),
           child: Image.asset(
             'assets/images/logo.png',
             width: 140,
             height: 140,
-            fit: BoxFit.cover, // Force l'image à remplir le cercle proprement
+            fit: BoxFit.cover,
           ),
         ),
       ),

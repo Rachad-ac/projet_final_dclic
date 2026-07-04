@@ -54,7 +54,7 @@ class _TodoListInterfaceState extends State<TodoListInterface> {
     _chargerTaches();
   }
 
-  // Ouvrir la boîte de dialogue de modification (Maquette ligne 2, colonnes 1 & 2)
+  // Ouvrir la boîte de dialogue de modification 
   void _afficherDialogueModifier(TodoList todolist) {
     _editController.text = todolist.tache;
     showDialog(
@@ -94,7 +94,7 @@ class _TodoListInterfaceState extends State<TodoListInterface> {
     );
   }
 
-  // Ouvrir la boîte de dialogue de suppression (Maquette ligne 2, colonne 4)
+  // Ouvrir la boîte de dialogue de suppression
   void _afficherDialogueSupprimer(int id) {
     showDialog(
       context: context,
@@ -191,7 +191,6 @@ class _TodoListInterfaceState extends State<TodoListInterface> {
                         itemCount: _taches.length,
                         itemBuilder: (context, index) {
                           final item = _taches[index];
-                          // Remplacement du Card par un Container avec décoration d'ombre basse
                           return Container(
                             alignment: Alignment.center,
                             height: 70,
@@ -212,9 +211,9 @@ class _TodoListInterfaceState extends State<TodoListInterface> {
                               trailing: Row(
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
-                                  // Icône Modifier (Crayon jaune/orange)
+                                  // Icône Modifier (Crayon jaune)
                                   IconButton(
-                                    icon: const Icon(Icons.edit, color: Colors.amber),
+                                    icon: const Icon(Icons.edit, color: Colors.yellow),
                                     onPressed: () => _afficherDialogueModifier(item),
                                   ),
                                   // Icône Supprimer (Poubelle rouge)

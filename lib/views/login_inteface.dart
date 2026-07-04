@@ -126,7 +126,6 @@ class _LoginScreenState extends State<LoginInterface> {
               ),
               const SizedBox(height: 8),
               
-              // Le Container conserve votre ombre violette basse intacte
               Container(
                 decoration: BoxDecoration(
                   color: Colors.grey[100],
@@ -155,7 +154,6 @@ class _LoginScreenState extends State<LoginInterface> {
                   ),
                 ),
               ),
-              // Affichage du texte d'erreur proprement EN DESSOUS de l'ombre
               if (_emailError != null)
                 Align(
                   alignment: Alignment.centerLeft,
@@ -197,7 +195,7 @@ class _LoginScreenState extends State<LoginInterface> {
                   controller: _passwordController,
                   obscureText: true,
                   decoration: InputDecoration(
-                    hintText: '••••••••••••',
+                    hintText: '************',
                     filled: true,
                     fillColor: Colors.transparent,
                     contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
@@ -208,7 +206,6 @@ class _LoginScreenState extends State<LoginInterface> {
                   ),
                 ),
               ),
-              // Affichage du texte d'erreur proprement EN DESSOUS de l'ombre
               if (_passwordError != null)
                 Align(
                   alignment: Alignment.centerLeft,

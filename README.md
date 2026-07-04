@@ -43,6 +43,9 @@ Application mobile de gestion de notes (type **Todo List**) développée avec **
 - Icône *logout* placée de manière accessible dans la barre d'outils (`AppBar`).
 - Utilisation de `Navigator.pushReplacement` pour détruire l'historique de la session et interdire tout retour involontaire vers la liste des tâches sans s'authentifier à nouveau.
 
+## Wireframes
+![alt text](assets/wireframes/wireframes_todo_list.png)
+
 ---
 
 ## 💾 Base de données (SQLite)
@@ -138,8 +141,6 @@ L'application a été conçue en plaçant l'expérience utilisateur (UX) au cent
 
 > 📁 Les maquettes et les wireframes originaux ayant servi de référence pour l'intégration visuelle sont disponibles dans le dossier : `/assets/wireframes/`.
 - Lien figma : https://www.figma.com/design/MilySsiE6xFTPqEjWrFNWw/gestion-de-notes?node-id=0-1&t=lDmpOTpUWM2shM5H-1
-
-![alt text](assets/wireframes/wireframes_todo_list.png)
 
 ---
 
