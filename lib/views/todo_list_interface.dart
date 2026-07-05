@@ -59,7 +59,7 @@ class _TodoListInterfaceState extends State<TodoListInterface> {
     _editController.text = todolist.tache;
     showDialog(
       context: context,
-      builder: (context) {
+      builder: (dialogContext) {
         return AlertDialog(
           title: const Text('Modifier la note', style: TextStyle(fontWeight: FontWeight.bold)),
           content: TextField(
@@ -70,7 +70,7 @@ class _TodoListInterfaceState extends State<TodoListInterface> {
           ),
           actions: [
             TextButton(
-              onPressed: () => Navigator.pop(context),
+              onPressed: () => Navigator.pop(dialogContext),
               child: const Text('Annuler', style: TextStyle(color: Colors.orange)),
             ),
             TextButton(
@@ -81,8 +81,10 @@ class _TodoListInterfaceState extends State<TodoListInterface> {
                     tache: _editController.text.trim(),
                   );
                   await _dbManager.updateTache(tacheModifiee);
-                  if (!mounted) return;
-                  Navigator.pop(context);
+                  
+                  if (!dialogContext.mounted) return;
+                  
+                  Navigator.pop(dialogContext);
                   _chargerTaches();
                 }
               },
@@ -98,20 +100,22 @@ class _TodoListInterfaceState extends State<TodoListInterface> {
   void _afficherDialogueSupprimer(int id) {
     showDialog(
       context: context,
-      builder: (context) {
+      builder: (dialogContext) {
         return AlertDialog(
           title: const Text('Supprimer la note', style: TextStyle(fontWeight: FontWeight.bold)),
           content: const Text('Voulez vous vraiment supprimer cette note ?'),
           actions: [
             TextButton(
-              onPressed: () => Navigator.pop(context),
+              onPressed: () => Navigator.pop(dialogContext),
               child: const Text('Annuler', style: TextStyle(color: Colors.indigo)),
             ),
             TextButton(
               onPressed: () async {
                 await _dbManager.deleteTache(id);
-                if (!mounted) return;
-                Navigator.pop(context);
+                
+                if (!dialogContext.mounted) return;
+                
+                Navigator.pop(dialogContext);
                 _chargerTaches();
               },
               child: const Text('Supprimer', style: TextStyle(color: Colors.red)),
@@ -127,14 +131,13 @@ class _TodoListInterfaceState extends State<TodoListInterface> {
     return Scaffold(
       backgroundColor: Colors.grey[100],
       appBar: AppBar(
-        title: const Text('Todo List Home', style: TextStyle(color: Colors.white)),
+        title: const Text('Todo List', style: TextStyle(color: Colors.white)),
         backgroundColor: Colors.indigo,
         centerTitle: true,
         elevation: 0,
         actions: [
           IconButton(
-            icon: const Icon(Icons.logout, color: Colors.white),
-            tooltip: 'Se déconnecter',
+            icon: const Icon(Icons.logout, color: Colors.white, fontWeight: FontWeight.bold),
             onPressed: () {
               // Redirection vers l'écran de connexion
               Navigator.pushReplacement(
@@ -173,7 +176,7 @@ class _TodoListInterfaceState extends State<TodoListInterface> {
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: IconButton(
-                    icon: const Icon(Icons.add, color: Colors.white),
+                    icon: const Icon(Icons.add, color: Colors.white, fontWeight: FontWeight.bold),
                     onPressed: _ajouterTache,
                   ),
                 ),
@@ -200,9 +203,9 @@ class _TodoListInterfaceState extends State<TodoListInterface> {
                               borderRadius: BorderRadius.circular(8),
                               boxShadow: [
                                 BoxShadow(
-                                  color: const Color.fromARGB(255, 141, 128, 252).withAlpha(200), // Opacité légère (~15%)
-                                  blurRadius: 4,                      // Floutage doux de la bordure
-                                  offset: const Offset(0, 4),         // Décalage vertical vers le bas uniquement
+                                  color: const Color.fromARGB(255, 141, 128, 252).withAlpha(200),
+                                  blurRadius: 4,
+                                  offset: const Offset(0, 4),
                                 ),
                               ],
                             ),
@@ -213,12 +216,12 @@ class _TodoListInterfaceState extends State<TodoListInterface> {
                                 children: [
                                   // Icône Modifier (Crayon jaune)
                                   IconButton(
-                                    icon: const Icon(Icons.edit, color: Colors.yellow),
+                                    icon: const Icon(Icons.edit, color: Colors.yellow, fontWeight: FontWeight.bold),
                                     onPressed: () => _afficherDialogueModifier(item),
                                   ),
                                   // Icône Supprimer (Poubelle rouge)
                                   IconButton(
-                                    icon: const Icon(Icons.delete_outline, color: Colors.red),
+                                    icon: const Icon(Icons.delete_outline, color: Colors.red, fontWeight: FontWeight.bold),
                                     onPressed: () => _afficherDialogueSupprimer(item.id!),
                                   ),
                                 ],
