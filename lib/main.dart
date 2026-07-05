@@ -1,8 +1,14 @@
+import 'package:app_to_do_list/views/login_inteface.dart';
 import 'package:flutter/material.dart';
-import './views/splash.dart'; // Importez votre nouvel écran
+import '../services/database_manager.dart';
 
-void main() {
+
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+   // Initialise la base de données en arrière-plan
+  final dbManager = DatabaseManager();
+  await dbManager.initDB();
   runApp(const MyApp());
 }
 
@@ -18,7 +24,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.indigo),
         useMaterial3: true,
       ),
-      home: const Splash(), // L'application démarre directement ici
+      home: const LoginInterface(),
     );
   }
 }

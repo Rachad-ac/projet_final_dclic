@@ -154,4 +154,4 @@ L'application a été conçue en plaçant l'expérience utilisateur (UX) au cent
 ---
 
 ## 💳 Crédits
-Projet de fin d'études de la **Semaine 6** réalisé avec succès par les apprenants dans le cadre de la formation **DCLIC « Formez-vous au numérique avec l’OIF »**.
+Projet de fin de formation de la **Semaine 6** réalisé avec succès dans le cadre de la **formation devellopemment mobile (flutter) - niveau intermediaire - DCLIC « Formez-vous au numérique avec l’OIF »**.
