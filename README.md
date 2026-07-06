@@ -13,12 +13,7 @@ Application mobile de gestion de notes (type **Todo List**) développée avec **
 
 ## 🚀 Fonctionnalités & Ergonomie
 
-### 1) Cycle de démarrage & Splash Screen
-- **Démarrage fluide :** L'application intègre un écran de démarrage personnalisé (`SplashScreen`) en code Flutter pour un contrôle visuel absolu, évitant les restrictions de taille d'Android.
-- **Rendu visuel :** Un fond blanc épuré mettant en valeur votre logo rendu parfaitement circulaire grâce au widget `ClipRRect`, le tout encadré par deux bandeaux horizontaux de couleur indigo.
-- **Chargement sécurisé :** Maintien d'un affichage minimal garanti de 3 secondes via un chrono asynchrone (`Future.wait`) qui initialise parallèlement la base de données SQLite.
-
-### 2) Interface de connexion scrollable
+### 1) Interface de connexion scrollable
 - **Saisie sécurisée :** Champs dédiés pour l'adresse email et le mot de passe (masqué).
 - **Protection anti-overflow :** L'ensemble du formulaire est enveloppé dans un `SingleChildScrollView`. Lorsque le clavier virtuel s'ouvre, l'interface glisse proprement vers le haut, éliminant tout crash visuel d'affichage (*Keyboard Overflow*).
 - **Design soigné :** Les champs de saisie et le bouton bénéficient d'ombres colorées asymétriques orientées exclusivement vers la bordure basse (`BoxShadow` avec `Offset(0, 4)`) pour un effet de relief élégant et épuré.
@@ -28,7 +23,7 @@ Application mobile de gestion de notes (type **Todo List**) développée avec **
 ### 3) Écran principal : liste des notes
 - **Affichage moderne :** Présentation des tâches sous forme de tuiles blanches épurées dotées, elles aussi, d'une ombre portée uniquement sur la bordure basse (`Offset(0, 4)`) pour se détacher proprement du fond de l'application.
 - **Bouton d'ajout :** Un champ supérieur clair accompagné d'un bouton **`+`** indigo, facilement identifiable, pour l'insertion instantanée d'une nouvelle note.
-- **Actions rapides :** Pour chaque note, l'utilisateur dispose d'une icône **crayon** (ambre) pour modifier et d'une icône **poubelle** (rouge) pour supprimer.
+- **Actions rapides :** Pour chaque note, l'utilisateur dispose d'une icône **crayon** (orange) pour modifier et d'une icône **poubelle** (rouge) pour supprimer.
 
 ### 4) Édition des notes
 - Boîte de dialogue modale et ergonomique avec un champ pré-rempli.
@@ -90,44 +85,67 @@ lib/
 │   └── todo_list.dart          # Modèle Note/Tâche (Mapping SQLite et Auto-incrément)
 │
 └── views/
-    ├── splash_screen.dart      # Écran d’attente (Chargement de la BDD et chrono minimal)
     ├── login_inteface.dart     # Interface de connexion scrollable avec ombres et erreurs déportées
     └── todo_list_interface.dart# Écran principal CRUD (Liste avec ombres basses, Modals et Logout)
 ```
 
 ---
 
-## ⚙️ Installation et lancement
+## ⚙️ Installation et lancement (dev)
 
 ### Prérequis
 - Flutter SDK installé (version stable)
-- Un émulateur Android/iOS ou un appareil physique connecté
+- Un émulateur Android/iOS **ou** un appareil physique connecté
+- (Optionnel mais recommandé) Android Studio / Xcode configurés pour le build Flutter
 
-### Étapes
-1. Cloner le projet ou extraire l'archive dans votre espace de travail.
-2. Ouvrir le dossier racine dans votre éditeur (VSCode).
-3. Installer proprement l'ensemble des dépendances nécessaires :
+### Installation depuis GitHub
+1. Récupérer le projet :
+    ```bash
+    git clone https://github.com/Rachad-ac/projet_final_dclic.git
+    cd app_to_do_list
+    ```
+2. Vérifier l’environnement Flutter :
+    ```bash
+    flutter doctor
+    ```
+3. Installer les dépendances :
     ```bash
     flutter pub get
     ```
-4. Lancer la compilation et l'exécution de l'application :
+
+### Lancer l’application en local (dev)
+1. Lister les appareils disponibles :
+    ```bash
+    flutter devices
+    ```
+2. Démarrer l’app sur l’appareil voulu :
     ```bash
     flutter run
     ```
+   (optionnel) Forcer un device id :
+   ```bash
+   flutter run -d <DEVICE_ID>
+   ```
+3. En cas de souci, consulter la console terminal (logs) :
+   - erreurs de compilation Dart/Flutter
+   - erreurs liées aux permissions (sur émulateur/appareil)
 
 ---
 
 ## 📱 Utilisation (Parcours Utilisateur)
 
-1. **Ouverture :** L'application affiche le `SplashScreen` aux couleurs de l'OIF pendant 3 secondes pendant que la base de données s'éveille.
+1. **Ouverture :** L'application affiche le `Splash` pendant le demarrage de l'app et pendant que la base de données s'éveille.
 2. **Authentification :** Renseigner l'email et le mot de passe.
-    - *Identifiants par défaut :* `admin@gmail.com` / `password1234`
+   - *Identifiants par défaut :* 
+     - Adresse mail : `admin@gmail.com`
+     - Mot de passe : `password1234`
 3. **Contrôle d'accès :** En cas d'erreur, une SnackBar explicite apparaît. Si les identifiants sont corrects, l'accès est déverrouillé et l'écran de login est détruit de la mémoire.
-4. **Gestion au quotidien :** 
-    - Ajouter une note via le champ supérieur et le bouton **+**.
-    - Modifier le contenu d'une note en cliquant sur le **crayon**.
-    - Retirer une note de la liste en cliquant sur la **poubelle**.
+4. **Gestion au quotidien :**
+   - Ajouter une note via le champ supérieur et le bouton **+**.
+   - Modifier le contenu d'une note en cliquant sur le **crayon**.
+   - Retirer une note de la liste en cliquant sur la **poubelle**.
 5. **Fermeture :** Se déconnecter proprement via l'icône de déconnexion dans la barre supérieure.
+
 
 ---
 
@@ -142,16 +160,8 @@ L'application a été conçue en plaçant l'expérience utilisateur (UX) au cent
 > 📁 Les maquettes et les wireframes originaux ayant servi de référence pour l'intégration visuelle sont disponibles dans le dossier : `/assets/wireframes/`.
 - Lien figma : https://www.figma.com/design/MilySsiE6xFTPqEjWrFNWw/gestion-de-notes?node-id=0-1&t=lDmpOTpUWM2shM5H-1
 
----
-
-## 🎯 Points forts pour l’évaluation (Critères)
-
-- **Gestion asynchrone maîtrisée :** Utilisation de `Future.wait` pour lier intelligemment le temps d'affichage esthétique du Splash Screen et l'éveil technique de la base de données SQLite.
-- **Persistance locale effective :** Intégration complète et fonctionnelle du package `sqflite` (schémas, batchs d'initialisation, opérations CRUD complètes).
-- **Ergonomie et Robustesse UI :** Résolution des bugs d'overflow liés au clavier, ajustement sur-mesure d'ombres portées exclusives en bordure basse, et déportation des messages d'erreur du validateur pour un rendu impeccable, conforme aux wireframes présentés.
-- **Navigation sécurisée :** Utilisation rigoureuse de `Navigator.pushReplacement` pour cloisonner l'authentification et la déconnexion.
 
 ---
 
 ## 💳 Crédits
-Projet de fin de formation de la **Semaine 6** réalisé avec succès dans le cadre de la **formation devellopemment mobile (flutter) - niveau intermediaire - DCLIC « Formez-vous au numérique avec l’OIF »**.
+Projet de fin de formation de la **Semaine 6** réalisé dans le cadre de la **formation devellopemment mobile (flutter) - niveau intermediaire - DCLIC « Formez-vous au numérique avec l’OIF »**.
